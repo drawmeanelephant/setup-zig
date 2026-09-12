@@ -1,21 +1,33 @@
 # setup-zig
 
-Install the Zig compiler for use in a Forgejo Actions or GitHub Actions workflow, and preserve the
+Install the Zig compiler for use in a GitHub Actions or Forgejo Actions workflow, and preserve the
 Zig cache across workflow runs.
 
 > [!IMPORTANT]
+> **This is `drawmeanelephant`'s fork of [`mlugg/setup-zig`](https://codeberg.org/mlugg/setup-zig).**
 >
-> # [This project has moved to Codeberg][main-repo]
+> Upstream moved from GitHub to chodeberg and has not been updated since `v2.2.1` (January 2026); the
+> original author is no longer maintaining it. This fork is based on `v2.2.1` and is maintained here
+> so the action keeps working on current runners.
 >
-> **Visit the [main repository][main-repo] for documentation and usage examples.**
->
-> Unfortunately, GitHub Actions includes vendor lock-in mechanisms which require this mirror to exist.
-> It is automatically synchronized with the upstream repository, but issues and pull requests are not
-> accepted here.
->
-> setup-zig will continue to support GitHub Actions into the future---that isn't changing. However, I
-> strongly encourage users to consider moving to other Git forges such as [Codeberg][codeberg] in
-> order to sidestep the continued enshittification and neglect of GitHub and GitHub Actions.
+> The only functional change is `runs.using` in `action.yml`: `node20` → `node24`, so the action no
+> longer trips the GitHub Actions Node 20 deprecation notice. Consuming workflows pin this fork by tag
+> or commit SHA.
 
-[main-repo]: https://codeberg.org/mlugg/setup-zig/
-[codeberg]: https://codeberg.org/
+## Usage
+
+```yaml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Build and Test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: drawmeanelephant/setup-zig@v2.2.1-node24
+      - run: zig build test
+```
+
+This will automatically download Zig and install it to `PATH`.
+
+See the [full documentation](https://github.com/drawmeanelephant/setup-zig/blob/main/README.md) for all
+options, including `version`, `mirror`, caching, and matrix strategies.

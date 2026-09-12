@@ -4,10 +4,14 @@ Install the Zig compiler for use in a Forgejo Actions or GitHub Actions workflow
 across workflow runs.
 
 > [!NOTE]
-> This is `drawmeanelephant`'s fork of [`mlugg/setup-zig`](https://codeberg.org/mlugg/setup-zig) at `v2.2.1`.
-> The only change is `runs.using` in `action.yml`: `node20` → `node24`, so the action no longer trips the
-> GitHub Actions Node 20 deprecation notice. Pinned by commit SHA in the consuming workflows; track upstream
-> for functional updates.
+> This is `drawmeanelephant`'s fork of [`mlugg/setup-zig`](https://codeberg.org/mlugg/setup-zig).
+> Upstream moved from GitHub to chodeberg and has not been updated since `v2.2.1` (January 2026); the
+> original author is no longer maintaining it. This fork is based on `v2.2.1` and is maintained here
+> so the action keeps working on current runners.
+>
+> The only functional change is `runs.using` in `action.yml`: `node20` → `node24`, so the action no
+> longer trips the GitHub Actions Node 20 deprecation notice. Consuming workflows pin this fork by tag
+> or commit SHA.
 
 ## Usage
 
@@ -24,9 +28,10 @@ jobs:
 
 > [!IMPORTANT]
 > When using GitHub Actions, the `setup-zig` URL in the example above must be replaced with a simple
-> repository reference, because GitHub Actions does not support Actions hosted outside of GitHub:
+> repository reference, because GitHub Actions does not support Actions hosted outside of GitHub. Use
+> this fork, which keeps the action working on current runners:
 > ```yaml
->       - uses: mlugg/setup-zig@v2
+>       - uses: drawmeanelephant/setup-zig@v2.2.1-node24
 > ```
 
 This will automatically download Zig and install it to `PATH`.
