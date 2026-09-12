@@ -3,6 +3,12 @@
 Install the Zig compiler for use in a Forgejo Actions or GitHub Actions workflow, and preserve the Zig cache
 across workflow runs.
 
+> [!NOTE]
+> This is `drawmeanelephant`'s fork of [`mlugg/setup-zig`](https://codeberg.org/mlugg/setup-zig) at `v2.2.1`.
+> The only change is `runs.using` in `action.yml`: `node20` → `node24`, so the action no longer trips the
+> GitHub Actions Node 20 deprecation notice. Pinned by commit SHA in the consuming workflows; track upstream
+> for functional updates.
+
 ## Usage
 
 ```yaml
